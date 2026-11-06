@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "global-football-intelligence"
+version = "0.5.0"
+description = "Open-data football prediction platform: FastAPI, PostgreSQL/SQLite, LangGraph, Dixon-Coles, XGBoost + React"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.30,<1",
+  "pydantic-settings>=2.5,<3",
+  "sqlalchemy>=2.0,<3",
+  "psycopg[binary]>=3.2,<4",
+  "alembic>=1.13,<2",
+  "numpy>=1.26,<3",
+  "pandas>=2.2,<3",
+  "scipy>=1.13,<2",
+  "scikit-learn>=1.5,<2",
+  "xgboost>=2.1,<4",
+  "langgraph>=0.2,<2",
+  "httpx>=0.27,<1",
+  "streamlit>=1.38,<2",
+  "joblib>=1.4,<2",
+  "sports-skills>=0.40",
+  "requests>=2.32",
+  "feedparser>=6.0",
+  "curl-cffi>=0.7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff>=0.6,<1", "httpx>=0.27,<1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = [
+  "integration: requires PostgreSQL (set RUN_INTEGRATION=1)",
+  "unit: pure unit tests",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B"]
+"scripts/*" = ["B"]

@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0c1210;
+  --color-surface: #141c18;
+  --color-surface-2: #1b2620;
+  --color-fg: #e8f0ea;
+  --color-muted: #8fa396;
+  --color-primary: #3dcc6e;
+  --color-primary-ink: #06210f;
+  --color-gold: #e8b84a;
+  --color-line: #243028;
+  --color-live: #ff5a4f;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-display: "Barlow", "IBM Plex Sans", sans-serif;
+  --radius: 0.9rem;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    min-height: 100%;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse 80% 40% at 100% -10%, color-mix(in oklab, var(--color-primary) 18%, transparent), transparent),
+    linear-gradient(180deg, #101714 0%, var(--color-bg) 28%);
+}

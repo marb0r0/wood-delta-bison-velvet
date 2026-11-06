@@ -1,0 +1,54 @@
+# Global Football Intelligence — Render Blueprint
+# https://render.com/docs/blueprint-spec
+#
+# Deploy: Dashboard → New → Blueprint → connect this repo
+# After first deploy, set CORS_ORIGINS on the API to your static site URL.
+
+databases:
+  - name: football-ai-db
+    plan: free
+    databaseName: football_ai
+    user: football
+
+services:
+  # ── FastAPI backend ──────────────────────────────────────────────
+  - type: web
+    name: football-ai-api
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: football-ai-db
+          property: connectionString
+      # After the static site is live, replace with its URL, e.g.:
+      # https://football-ai-web.onrender.com
+      - key: CORS_ORIGINS
+        sync: false
+      - key: MODEL_VERSION
+        value: dixon-coles-baseline-v0.2
+
+  # ── React frontend (static site) ─────────────────────────────────
+  - type: web
+    name: football-ai-web
+    runtime: static
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    # SPA: all routes fall back to index.html
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      # Set this to the public URL of football-ai-api after first deploy
+      # e.g. https://football-ai-api.onrender.com
+      - key: VITE_API_URL
+        sync: false

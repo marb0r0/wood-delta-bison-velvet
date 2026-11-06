@@ -1,0 +1,41 @@
+========================================================
+  GLOBAL FOOTBALL INTELLIGENCE — Como abrir no Windows
+========================================================
+
+REQUISITOS
+  1. Python 3.11 ou superior  →  https://www.python.org/downloads/
+     (marca "Add python.exe to PATH" na instalacao)
+  2. Node.js 18 ou superior   →  https://nodejs.org/
+     (so necessario para o ecran React)
+
+COMO COMECAR
+  1. Descompacta esta pasta onde quiseres (ex.: Ambiente de Trabalho)
+  2. Duplo-clique em  ABRIR.bat
+  3. Escolhe [1] Instalar tudo  (so na primeira vez)
+  4. Escolhe [2] Arrancar API + Frontend
+
+  OU simplesmente duplo-clique em  START.bat  (instala se preciso e arranca)
+
+ENDERECOS
+  Frontend (app):   http://127.0.0.1:3000
+  API + Swagger:    http://127.0.0.1:8000/docs
+
+PARAR
+  Fecha as janelas pretas "Football API" e "Football UI"
+  ou corre PARAR.bat
+
+ESTRUTURA DA PASTA
+  ABRIR.bat          ← menu principal (Windows)
+  START.bat          ← arranque rapido
+  PARAR.bat          ← para os servicos
+  LER_PRIMEIRO.txt   ← este ficheiro
+  src/               ← codigo da API (Python)
+  frontend/          ← interface React
+  tests/             ← testes
+  scripts/           ← seed e utilitarios
+  README.md          ← documentacao completa
+
+NOTAS
+  - Na primeira instalacao o pip e o npm podem demorar alguns minutos
+  - A base de dados local e SQLite (criada automaticamente)
+  - Firewall do Windows pode pedir autorizacao na primeira vez — aceita
